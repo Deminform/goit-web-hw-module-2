@@ -1,4 +1,5 @@
 import re
+
 from fields_interface import Field, Validate
 
 
@@ -8,8 +9,10 @@ class Phone(Field, Validate):
         super().__init__(value)
 
     def _validate(self, value):
-        if not re.match(r'^\d{10}$', value):
-            raise ValueError("Phone number not added! Invalid phone number. Must contain 10 digits.")
+        if not re.match(r"^\d{10}$", value):
+            raise ValueError(
+                "Phone number not added! Invalid phone number. Must contain 10 digits."
+            )
 
     def __str__(self):
         return self._value

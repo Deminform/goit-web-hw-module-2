@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from fields_interface import Field, Validate
 
 
@@ -9,7 +10,7 @@ class Birthday(Field, Validate):
 
     def _validate(self, value):
         try:
-            datetime.strptime(value, '%d.%m.%Y')
+            datetime.strptime(value, "%d.%m.%Y")
         except ValueError:
             raise ValueError("Invalid date format. Use DD.MM.YYYY")
 

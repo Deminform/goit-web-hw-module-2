@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from adress_book import AddressBook
 
 
 class ContactReader(ABC):

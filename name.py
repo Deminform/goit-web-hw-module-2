@@ -8,7 +8,7 @@ class Name(Field, Validate):
 
     def _validate(self, value):
         if not isinstance(value, str):
-            raise TypeError('Value must be a string')
+            raise TypeError("Value must be a string")
 
     def __str__(self):
         return self._value

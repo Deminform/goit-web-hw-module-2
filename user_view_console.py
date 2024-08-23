@@ -1,8 +1,10 @@
-from error_decorator import error_decorator
-from adress_book import AddressBook
-from record import Record
-from colorama import Fore, init
 import pickle
+
+from colorama import Fore, init
+
+from adress_book import AddressBook
+from error_decorator import error_decorator
+from record import Record
 
 init(autoreset=True)
 
@@ -62,12 +64,12 @@ def parse_input(user_input):
 def add_contact(args: list, book: AddressBook):
     name, phone, *_ = args
     record = book.find(name)
-    message = 'Contact updated'
+    message = "Contact updated"
     if record is None:
         record = Record(name)
         record.add_phone(phone)
         book.add_record(record)
-        message = 'Contact added'
+        message = "Contact added"
         return message
     elif phone:
         record.add_phone(phone)
@@ -80,8 +82,8 @@ def delete(args: list, book: AddressBook):
     record = book.find(name)
     if record is not None:
         book.delete(name)
-        return 'Contact deleted'
-    return 'Contact not found'
+        return "Contact deleted"
+    return "Contact not found"
 
 
 @error_decorator
@@ -89,7 +91,7 @@ def change_phone(args: list, book: AddressBook):
     name, old_phone, new_phone, *_ = args
     record = book.find(name)
     record.edit_phone(old_phone, new_phone)
-    return f'Phone changed from {old_phone} to {new_phone} for contact: {record.name.value}'
+    return f"Phone changed from {old_phone} to {new_phone} for contact: {record.name.value}"
 
 
 @error_decorator
@@ -106,14 +108,14 @@ def add_birthday(args: list, book: AddressBook):
     name, date_of_birth, *_ = args
     record = book.find(name)
     if record is None:
-        raise ValueError(f'Record with name: {name} does not exist')
+        raise ValueError(f"Record with name: {name} does not exist")
 
     if record.birthday is None:
         record.add_birthday(date_of_birth)
     else:
-        raise ValueError(f'Record with name: {record.name.value} already has birthday')
+        raise ValueError(f"Record with name: {record.name.value} already has birthday")
 
-    return 'Birthday added'
+    return "Birthday added"
 
 
 @error_decorator
@@ -121,7 +123,7 @@ def show_birthday(args: list, book: AddressBook):
     name, *_ = args
     record = book.find(name)
     if record is None:
-        raise ValueError(f'Record with name: {name} does not exist')
+        raise ValueError(f"Record with name: {name} does not exist")
     return record.show_birthday()
 
 
@@ -137,5 +139,5 @@ def load_data(filename="files/new_addressbook.pkl"):
         return pickle.load(file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
