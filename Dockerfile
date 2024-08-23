@@ -1,18 +1,13 @@
-FROM python:3.12
-# Встановимо змінну середовища
-ENV APP_HOME /app
+FROM python:3.12-slim
 
-# Встановимо робочу директорію всередині контейнера
-WORKDIR $APP_HOME
+WORKDIR /app
 
-# Скопіюємо інші файли в робочу директорію контейнера
+RUN pip install poetry
+
+COPY pyproject.toml poetry.lock ./
+
+RUN poetry install
+
 COPY . .
 
-# Встановимо залежності всередині контейнера
-RUN pip install -r requirements.txt
-
-# Позначимо порт, де працює застосунок всередині контейнера
-EXPOSE 5000
-
-# Запустимо наш застосунок всередині контейнера
-ENTRYPOINT ["python", "app.py"]
+CMD ["poetry", "run", "python", "user_view_console.py"]

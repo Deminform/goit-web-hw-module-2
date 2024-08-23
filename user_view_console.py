@@ -25,14 +25,18 @@ commands_dict = {
 @error_decorator
 def main():
     book = load_data()
-    print("Welcome to the assistant bot!" "\n-h or -help for info")
+    print("------------------------------------------------------------------------------------\n"
+          "--------------------------- Welcome to the assistant bot! --------------------------\n"
+          "-h or -help for info")
     while True:
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit"]:
             save_data(book)
-            print("All the data has been saved.\nGood bye!")
+            print("------------------------------------------------------------------------------------\n"
+                  "---------------------------- All the data has been saved. --------------------------\n"
+                  "------------------------------------- Good bye! ------------------------------------")
             break
 
         elif command in ["-h", "-help"]:
