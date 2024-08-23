@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "python-web-module-2"
+version = "0.1.0"
+description = ""
+authors = ["Deminform <deminform@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+prettytable = "^3.11.0"
+colorama = "^0.4.6"
+
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["d"], version = "^24.8.0"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
