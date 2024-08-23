@@ -8,11 +8,24 @@ from record import Record
 
 init(autoreset=True)
 
+commands_dict = {
+    "hi, hello": "Привітатися з програмою",
+    "close, exit": "Вийти з програми",
+    "all": "Показати всі доступні записи",
+    "add": "Додати новий запис",
+    "delete": "Видалити існуючий запис",
+    "change": "Змінити існуючий запис",
+    "phone": "Показати телефонні номери для контакту",
+    "add-birthday": "Додати дату народження для контакту",
+    "show-birthday": "Показати дату народження контакту",
+    "birthdays": "Показати найближчі дні народження всіх контактів",
+}
+
 
 @error_decorator
 def main():
     book = load_data()
-    print("Welcome to the assistant bot!")
+    print("Welcome to the assistant bot!" "\n-h or -help for info")
     while True:
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
@@ -21,6 +34,11 @@ def main():
             save_data(book)
             print("All the data has been saved.\nGood bye!")
             break
+
+        elif command in ["-h", "-help"]:
+            max_len = max(len(key) for key in commands_dict.keys())
+            for key, value in commands_dict.items():
+                print(f"{key.ljust(max_len)}   {value}")
 
         elif command in ["hi", "hello"]:
             print("How can I help you?")
